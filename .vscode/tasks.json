@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run All Microservices",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; Start-Process powershell -ArgumentList 'cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; .\\mvnw.cmd -DskipTests spring-boot:run -pl eureka-server'; Start-Process powershell -ArgumentList 'cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; .\\mvnw.cmd -DskipTests spring-boot:run -pl api-gateway'; Start-Process powershell -ArgumentList 'cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; .\\mvnw.cmd -DskipTests spring-boot:run -pl proveedores-service'; Start-Process powershell -ArgumentList 'cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; .\\mvnw.cmd -DskipTests spring-boot:run -pl productos-service'; Start-Process powershell -ArgumentList 'cd \"d:\\AITEC\\PROYECTO_TITULACION\\Nueva carpeta\\microservico\"; .\\mvnw.cmd -DskipTests spring-boot:run -pl ordenes-service'"
+      ],
+      "isBackground": true,
+      "problemMatcher": ["$tsc"],
+      "group": "build"
+    }
+  ]
+}

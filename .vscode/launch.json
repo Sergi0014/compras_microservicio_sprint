@@ -1,0 +1,109 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Eureka Server",
+      "request": "launch",
+      "mainClass": "com.compras.eureka.EurekaServerApplication",
+      "projectName": "eureka-server",
+      "env": {
+        "SERVER_PORT": "8761"
+      }
+    },
+    {
+      "type": "java",
+      "name": "API Gateway",
+      "request": "launch",
+      "mainClass": "com.compras.gateway.ApiGatewayApplication",
+      "projectName": "api-gateway",
+      "env": {
+        "SERVER_PORT": "8080"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Proveedores Service",
+      "request": "launch",
+      "mainClass": "com.compras.proveedores.ProveedoresServiceApplication",
+      "projectName": "proveedores-service",
+      "env": {
+        "SERVER_PORT": "8081"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Productos Service",
+      "request": "launch",
+      "mainClass": "com.compras.productos.ProductosServiceApplication",
+      "projectName": "productos-service",
+      "env": {
+        "SERVER_PORT": "8082"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Ordenes Service",
+      "request": "launch",
+      "mainClass": "com.compras.ordenes.OrdenesServiceApplication",
+      "projectName": "ordenes-service",
+      "env": {
+        "SERVER_PORT": "8083"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Detalles Service",
+      "request": "launch",
+      "mainClass": "com.compras.detalles.DetallesServiceApplication",
+      "projectName": "detalles-service",
+      "env": {
+        "SERVER_PORT": "8084"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Proveedores Service (H2)",
+      "request": "launch",
+      "mainClass": "com.compras.proveedores.ProveedoresServiceApplication",
+      "projectName": "proveedores-service",
+      "vmArgs": "-Dspring.profiles.active=h2",
+      "env": {
+        "SERVER_PORT": "18081"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Productos Service (H2)",
+      "request": "launch",
+      "mainClass": "com.compras.productos.ProductosServiceApplication",
+      "projectName": "productos-service",
+      "vmArgs": "-Dspring.profiles.active=h2",
+      "env": {
+        "SERVER_PORT": "18082"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Ordenes Service (H2)",
+      "request": "launch",
+      "mainClass": "com.compras.ordenes.OrdenesServiceApplication",
+      "projectName": "ordenes-service",
+      "vmArgs": "-Dspring.profiles.active=h2",
+      "env": {
+        "SERVER_PORT": "18083"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Detalles Service (H2)",
+      "request": "launch",
+      "mainClass": "com.compras.detalles.DetallesServiceApplication",
+      "projectName": "detalles-service",
+      "vmArgs": "-Dspring.profiles.active=h2",
+      "env": {
+        "SERVER_PORT": "18084"
+      }
+    }
+  ]
+}

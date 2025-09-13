@@ -1,0 +1,104 @@
+version: "3.9"
+services:
+  postgres-proveedores:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: proveedores_db
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: clave
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U usuario -d proveedores_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-productos:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: productos_db
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: clave
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U usuario -d productos_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-ordenes:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ordenes_db
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: clave
+    ports:
+      - "5435:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U usuario -d ordenes_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-server:
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SERVER_PORT=8761
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+
+  proveedores-service:
+    build: ./proveedores-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-proveedores:5432/proveedores_db
+      - SPRING_DATASOURCE_USERNAME=usuario
+      - SPRING_DATASOURCE_PASSWORD=clave
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      postgres-proveedores:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+
+  productos-service:
+    build: ./productos-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-productos:5432/productos_db
+      - SPRING_DATASOURCE_USERNAME=usuario
+      - SPRING_DATASOURCE_PASSWORD=clave
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      postgres-productos:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+
+  ordenes-service:
+    build: ./ordenes-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-ordenes:5432/ordenes_db
+      - SPRING_DATASOURCE_USERNAME=usuario
+      - SPRING_DATASOURCE_PASSWORD=clave
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    depends_on:
+      postgres-ordenes:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started

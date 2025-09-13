@@ -1,0 +1,321 @@
+# ============================================
+# JAVA & MAVEN
+# ============================================
+
+# Archivos de clases compiladas
+*.class
+
+# Archivos de paquetes
+*.jar
+!**/src/main/resources/**/*.jar
+*.war
+*.ear
+
+# Salida de compilación de Maven
+**/target/
+**/out/
+**/bin/
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Reportes de Maven Surefire
+**/surefire-reports/
+**/failsafe-reports/
+
+# Información de compilación de Spring Boot
+**/build-info.properties
+
+# ============================================
+# SPRING BOOT Y MICROSERVICIOS
+# ============================================
+
+# Específicos de Spring Boot
+spring-boot-starter-*.jar
+*.original
+application-*.properties.bak
+application-*.yml.bak
+
+# Archivos de base de datos H2 (desarrollo)
+*.db
+*.trace.db
+*.lock.db
+*.mv.db
+
+# Archivos de logs
+*.log
+logs/
+log/
+hs_err_pid*
+replay_pid*
+*.log.*
+/tmp/
+
+# ============================================
+# NODE.JS Y REACT (frontend-react/)
+# ============================================
+
+# Dependencias
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Compilaciones de producción
+**/build/
+**/dist/
+
+# Datos de ejecución
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directorio de cobertura usado por herramientas como istanbul
+coverage/
+*.lcov
+
+# Cobertura de pruebas nyc
+.nyc_output
+
+# Caché de ESLint
+.eslintcache
+
+# Directorio opcional de caché de npm
+.npm
+
+# Historial opcional de REPL
+.node_repl_history
+
+# Salida de 'npm pack'
+*.tgz
+
+# Archivo de integridad de Yarn
+.yarn-integrity
+
+# Paquetes de React/Webpack
+*.bundle.js
+*.bundle.css
+bundle-stats.json
+
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================
+# DOCKER Y CONTENEDORIZACIÓN
+# ============================================
+
+# Volúmenes de Docker
+docker-data/
+docker-logs/
+
+# Archivos de override de Docker Compose
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+!docker-compose.dev.yml
+!docker-compose.prod.yml
+
+# ============================================
+# IDES Y EDITORES
+# ============================================
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.code-workspace
+
+### Sublime Text ###
+*.sublime-workspace
+*.sublime-project
+
+### Vim ###
+*.swp
+*.swo
+*~
+
+# ============================================
+# SISTEMA OPERATIVO
+# ============================================
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows ###
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+### Linux ###
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# SEGURIDAD Y DATOS SENSIBLES
+# ============================================
+
+# Archivos de configuración con datos sensibles
+**/application-secrets.properties
+**/application-prod.properties
+**/application-production.properties
+**/*-secrets.*
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+
+# Archivos de conexión a base de datos
+**/database.properties
+**/db.properties
+
+# Claves API y secretos
+.secrets/
+secrets.json
+config/secrets/
+
+# ============================================
+# DESARROLLO Y PRUEBAS
+# ============================================
+
+# Reportes de cobertura de pruebas
+**/coverage/
+**/.coverage
+**/htmlcov/
+**/junit.xml
+**/coverage.xml
+
+# Archivos temporales
+*.tmp
+*.temp
+*~
+.#*
+
+# Archivos de respaldo
+*.bak
+*.backup
+*.old
+*.orig
+
+# Directorios de caché
+.cache/
+**/.cache/
+
+# ============================================
+# ESPECÍFICOS DE MICROSERVICIOS
+# ============================================
+
+# Caché de descubrimiento de servicios
+eureka-client/cache/
+
+# Caché del API Gateway
+gateway-cache/
+
+# Configuraciones del balanceador de carga (si se generan automáticamente)
+**/ribbon-*.properties
+
+# Configuraciones de service mesh (si se usa)
+istio-proxy.log
+envoy.log
+
+# Trazabilidad distribuida
+jaeger-*.log
+zipkin-*.log
+
+# Métricas de circuit breaker
+hystrix-*.log
+
+# ============================================
+# VARIOS
+# ============================================
+
+# Gradle (si se mezcla con Maven)
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Administradores de paquetes
+.yarn/
+.pnpm-store/
+
+# Directorios y archivos del editor
+.vscode/settings.json.bak
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignorar específicos del proyecto personalizado
+# Agrega tus ignorar personalizados debajo de esta línea
