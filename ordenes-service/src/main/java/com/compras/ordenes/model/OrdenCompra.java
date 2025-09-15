@@ -18,7 +18,7 @@ public class OrdenCompra {
     @Column(nullable = false)
     private Boolean estado = true;
     
-    @OneToMany(mappedBy = "ordenCompra", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ordenCompra", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetalleOrdenCompra> detalles = new ArrayList<>();
     
     private Instant fechaCreacion;
