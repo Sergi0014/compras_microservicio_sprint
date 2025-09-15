@@ -7,9 +7,14 @@ import com.compras.ordenes.repository.DetalleOrdenCompraRepository;
 import com.compras.ordenes.repository.OrdenCompraRepository;
 import com.compras.ordenes.service.OrdenCompletaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,8 +34,22 @@ public class OrdenCompraController {
         this.ordenCompletaService = ordenCompletaService;
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "Servicio de órdenes funcionando - Optimizaciones aplicadas!";
+    }
+
     @GetMapping
-    public List<OrdenCompra> list() { return repository.findAll(); }
+    @Transactional(readOnly = true)
+    public List<OrdenCompra> list(@RequestParam(defaultValue = "20") int limit) {
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "id"));
+        List<OrdenCompra> ordenes = repository.findAll(pageable).getContent();
+        
+        // Forzar la inicialización de los detalles mientras la sesión está activa
+        ordenes.forEach(orden -> orden.getDetalles().size());
+        
+        return ordenes;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrdenCompra> get(@PathVariable Long id) {
